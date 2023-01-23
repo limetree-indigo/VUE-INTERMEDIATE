@@ -4,13 +4,35 @@
     <span class="addContainer" @click="addTodo">
       <i class="fas fa-plus addBtn"></i>
     </span>
+    <Teleport to="body">
+      <!-- use the modal component, pass in the prop -->
+      <ModalComponent :show="showModal" @close="showModal = false">
+        <template #header>
+          <h3>경고!
+            <i class="closeModalBtn fas fa-times" @click="showModal = false"></i>
+          </h3>
+        </template>
+        <template #body>
+          <div>
+            아무것도 입력하지 않았습니다.
+          </div>
+        </template>
+        templ
+      </ModalComponent>
+    </Teleport>
   </div>
 </template>
 <script>
+import ModalComponent from './common/ModalComponent.vue'
+
 export default {
+  components: {
+    ModalComponent
+  },
   data () {
     return {
-      newTodoItem: ''
+      newTodoItem: '',
+      showModal: false
     }
   },
   methods: {
@@ -18,6 +40,8 @@ export default {
       if (this.newTodoItem !== '') {
         this.$emit('addTodoItem', this.newTodoItem)
         this.clearInput()
+      } else {
+        this.showModal = !this.showModal
       }
     },
     clearInput: function () {
@@ -51,5 +75,8 @@ input:focus {
 .addBtn {
   color: white;
   vertical-align: middle;
+}
+.closeModalBtn {
+  color: #42b983;
 }
 </style>
