@@ -17,7 +17,7 @@ export default {
   unmounded () {},
   methods: {
     clearTodo: function () {
-      localStorage.clear()
+      this.$emit('clearAll')
     }
   }
 }
