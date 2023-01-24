@@ -3,21 +3,12 @@
     <span class="clearAllBtn" @click="clearTodo">Clear All</span>
   </div>
 </template>
+
 <script>
 export default {
-  components: {},
-  data () {
-    return {
-      sampleData: ''
-    }
-  },
-  setup () {},
-  created () {},
-  mounted () {},
-  unmounded () {},
   methods: {
-    clearTodo: function () {
-      this.$emit('clearAll')
+    clearTodo () {
+      this.$store.commit('clearAllItems')
     }
   }
 }
